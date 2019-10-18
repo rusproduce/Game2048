@@ -24,9 +24,10 @@ public class Service {
         System.out.println("---------------The game 2048!---------------");
         System.out.println("-----Game settings:-----");
         System.out.println("For saving - \"save\", for loading - \"load\"");
-        System.out.println("For return - \"re\"");
-        System.out.println("Show a tip - \"tip\"");
-        System.out.println("Show the best move - \"best\"");
+        System.out.println("And for load autoSave game - \"autoLoad\"");
+        System.out.println("For return - \"return\"");
+        System.out.println("If you don't know what to do - \"help\"");
+        System.out.println("Show a quite well move - \"tip\"");
         System.out.println("For quit the game - \"q\"");
         System.out.println();
         System.out.println("-----Control settings:-----");
@@ -193,7 +194,6 @@ public class Service {
             }
         }
         System.out.println("Your score: " + game.getScore());
-        System.out.println(game.getMoveHistory());
     }
 
     /**
@@ -300,23 +300,21 @@ public class Service {
     }
 
     public String giveMeTip(Game2048 game){
-        String tip = checkCanMove(game, "a") ? "You can go Left! " : "";
-        tip += checkCanMove(game, "d") ? "You can go Right!  " : "";
-        tip += checkCanMove(game, "w") ? "You can go Up!  " : "";
-        tip += checkCanMove(game, "s") ? "You can go Down!  " : "";
+        String tip = checkCanMove(game, "a") ? "You can go Left " : "";
+        tip += checkCanMove(game, "d") ? "You can go Right  " : "";
+        tip += checkCanMove(game, "w") ? "You can go Up  " : "";
+        tip += checkCanMove(game, "s") ? "You can go Down  " : "";
         return tip;
     }
 
     public String goodMove(Game2048 game){
         String moves = "awds";
         String move = "";
-        String bestMove = "all of move give nothing)";
+        String goodMove = "what can i say, press any button";
         Integer bestScore = game.getScore();
         Game2048 tempGame = convertHistoryToGame(game, new Game2048());
-        System.out.println(game.getMoveHistory());
         for (char x : moves.toCharArray()){
             if (move(tempGame, String.valueOf(x))){
-                System.out.println(game.getMoveHistory());
                 switch (x){
                     case('a'): move = "left";
                         break;
@@ -327,15 +325,19 @@ public class Service {
                     case('s'): move = "down";
                         break;
                 }
-                if (tempGame.getScore() > bestScore){
-                    bestScore = tempGame.getScore();
-                    bestMove = move;
+                if (tempGame.getScore() >= bestScore){
+                    if (tempGame.getScore() == bestScore) {
+                        goodMove += " or " + move;
+                    }else{
+                        bestScore = tempGame.getScore();
+                        goodMove = move;
+                    }
+
                 }
                 returnMove(tempGame);
-                System.out.println(game.getMoveHistory());
             }
         }
-        return bestMove;
+        return goodMove;
     }
 
     private void autoSaveMoveHistory(Game2048 game) {

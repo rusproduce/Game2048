@@ -34,16 +34,16 @@ public class Main {
                     game = service.load(game);
                     service.display(game);
                     break;
-                case("autoload"):
+                case("autoLoad"):
                     game = service.autoLoad();
                     service.display(game);
                     break;
-                case("tip"):
+                case("help"):
                     String tip = service.giveMeTip(game);
                     System.out.println(tip);
                     break;
-                case("bestTip"):
-                    System.out.println("The best move is " + service.goodMove(game));
+                case("tip"):
+                    System.out.println("My advice to you: " + service.goodMove(game));
                     break;
                 case("q"):
                     service.end(game);
