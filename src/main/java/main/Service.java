@@ -155,17 +155,6 @@ public class Service {
             list.removeAll(list);
         }
     }
-/*    private void upAndDown(Game2048 game){
-        List<Field> list = new ArrayList<>();
-        for (int i = 0; i < game.getN(); i++) {
-            for (int j = i; j < game.getN() * game.getN(); j += game.getN()) {
-                list.add(game.getFields().get(j));
-            }
-            shiftFilds(game, list);
-            sumFields(game, list);
-            list.removeAll(list);
-        }
-    }*/
 
     private void down(Game2048 game){
         List<Field> list = new ArrayList<>();
