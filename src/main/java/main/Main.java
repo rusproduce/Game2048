@@ -43,7 +43,7 @@ public class Main {
                     System.out.println(tip);
                     break;
                 case("bestTip"):
-                    System.out.println("The best move is " + service.bestMove(game));
+                    System.out.println("The best move is " + service.goodMove(game));
                     break;
                 case("q"):
                     service.end(game);

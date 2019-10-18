@@ -307,7 +307,7 @@ public class Service {
         return tip;
     }
 
-    public String bestMove(Game2048 game){
+    public String goodMove(Game2048 game){
         String moves = "awds";
         String move = "";
         String bestMove = "all of move give nothing)";
